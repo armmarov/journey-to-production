@@ -1,11 +1,33 @@
+import os
+import logging
+
 from flask import Flask
 from flasgger import Swagger
+from flask_cors import CORS
 
-app = Flask(__name__)
-swagger = Swagger(app)
+def create_app():
+  
+  app = Flask(__name__)
+  swagger = Swagger(app)
+  CORS(app)
 
-# app.config.from_object(config_by_name['dev'])
+  app.config.from_object('app.config')
 
-from app.routes.general_route import general_api
+  # Logger settings
+  logging.basicConfig(level=logging.DEBUG,
+                      format='[%(asctime)s]: {} %(levelname)s %(message)s'.format(os.getpid()),
+                      datefmt='%Y-%m-%d %H:%M:%S',
+                      handlers=[logging.StreamHandler()])
+  logger = logging.getLogger()
 
-app.register_blueprint(general_api, url_prefix='/')
+  register_blueprints(app)
+
+  return app
+
+def register_blueprints(app):
+
+  from app.routes.general_route import general_api
+
+  app.register_blueprint(general_api, url_prefix='/')
+
+app = create_app()
