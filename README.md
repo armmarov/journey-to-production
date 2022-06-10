@@ -1,4 +1,4 @@
-# Flask API server
+# Flask API Server
 
 ## To initially setup the environment
 ```
