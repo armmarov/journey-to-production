@@ -1,6 +1,5 @@
 import os
-
-basedir = os.path.abspath(os.path.dirname(__file__))
+import sys
 
 class BaseConfig:
     SECRET_KEY = os.getenv('SECRET_KEY', 'TestServer123')
@@ -14,7 +13,7 @@ class BaseConfig:
 class DevelopmentConfig(BaseConfig):
     FLASK_ENV = 'development'
     DBNAME = 'testdb'
-    SQLALCHEMY_DATABASE_URI = basedir + "/app_dev.db"
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///devdb.sqlite'
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     SWAGGER = {
         'title': 'Development Server',
@@ -27,7 +26,7 @@ class StagingConfig(BaseConfig):
     TESTING = True
     PRESERVE_CONTEXT_ON_EXCEPTION = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = basedir + "/app_stage.db"
+    SQLALCHEMY_DATABASE_URI =  'sqlite:///testdb.sqlite'
     SWAGGER = {
         'title': 'Staging Server',
     }
@@ -35,8 +34,7 @@ class StagingConfig(BaseConfig):
 
 class ProductionConfig(BaseConfig):
     FLASK_ENV = 'production'
-    DBNAME = 'testdb'
-    SQLALCHEMY_DATABASE_URI = basedir + "/app_prod.db"
+    SQLALCHEMY_DATABASE_URI = "mysql://testuser:testpass@localhost/testdb"
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SWAGGER = {
         'title': 'Production Server',

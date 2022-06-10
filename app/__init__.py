@@ -4,6 +4,8 @@ import logging
 from flask import Flask
 from flasgger import Swagger
 from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 def create_app():
   
@@ -12,6 +14,9 @@ def create_app():
   CORS(app)
 
   app.config.from_object('app.config')
+
+  db = SQLAlchemy(app)
+  migrate = Migrate(app, db)
 
   # Logger settings
   logging.basicConfig(level=logging.DEBUG,
@@ -22,7 +27,7 @@ def create_app():
 
   register_blueprints(app)
 
-  return app
+  return app, db
 
 def register_blueprints(app):
 
@@ -30,4 +35,4 @@ def register_blueprints(app):
 
   app.register_blueprint(general_api, url_prefix='/')
 
-app = create_app()
+app, db = create_app()

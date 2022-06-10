@@ -11,21 +11,29 @@ init: source_venv
 
 run_dev:
 	export FLASK_ENV=Development && \
-	export FLASK_RUN_PORT=5050 && \
+	export FLASK_RUN_PORT=5000 && \
 	export FLASK_DEBUG=1 && \
 	flask run
 
 run_stage:
 	export FLASK_ENV=Staging && \
-	export FLASK_RUN_PORT=5050 && \
+	export FLASK_RUN_PORT=5000 && \
 	export FLASK_DEBUG=1 && \
 	flask run
 
 run_prod:
-	gunicorn --worker-class gevent --workers 2 --bind 0.0.0.0:3040 wsgi:app --max-requests 10000 --timeout 5 --keep-alive 5 --log-level info
+	export FLASK_ENV=Production && \
+	export FLASK_DEBUG=0 && \
+	gunicorn --worker-class gevent --workers 2 --bind 0.0.0.0:5000 wsgi:app --max-requests 10000 --timeout 5 --keep-alive 5 --log-level info
 
 unit_test:
 	export FLASK_ENV=Development && \
-	export FLASK_RUN_PORT=5050 && \
+	export FLASK_RUN_PORT=5000 && \
 	export FLASK_DEBUG=1 && \
 	pytest -v
+
+init_db:
+	flask db init
+
+migrate_db:
+	flask db migrate
