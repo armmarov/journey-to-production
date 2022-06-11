@@ -24,7 +24,7 @@ run_stage:
 run_prod:
 	export FLASK_ENV=Production && \
 	export FLASK_DEBUG=0 && \
-	gunicorn --worker-class gevent --workers 2 --bind 0.0.0.0:5000 wsgi:app --max-requests 10000 --timeout 5 --keep-alive 5 --log-level info
+	gunicorn --worker-class gevent --workers 1 --bind 0.0.0.0:5000 wsgi:app --max-requests 10000 --timeout 120 --keep-alive 5 --log-level info
 
 unit_test:
 	export FLASK_ENV=Development && \
