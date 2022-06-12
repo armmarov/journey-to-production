@@ -1,4 +1,4 @@
-# Flask API server
+# Flask API Server
 
 ## To initially setup the environment
 ```
@@ -24,5 +24,3 @@
 > flask run
 > curl localhost:5000/health
 ```
-
-abc
