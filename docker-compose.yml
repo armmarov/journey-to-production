@@ -33,7 +33,7 @@ services:
     links:
       - app
     ports:
-      - 8002:8002
+      - 80:80
     restart: unless-stopped
     depends_on:
       - app

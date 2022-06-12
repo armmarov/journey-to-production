@@ -32,7 +32,9 @@ def create_app():
 def register_blueprints(app):
 
   from app.routes.general_route import general_api
+  from app.routes.ml_route import ml_api
 
   app.register_blueprint(general_api, url_prefix='/')
+  app.register_blueprint(ml_api, url_prefix='/ml')
 
 app, db = create_app()
