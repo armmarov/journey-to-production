@@ -24,3 +24,8 @@
 > flask run
 > curl localhost:5000/health
 ```
+
+## To run docker
+```
+> ./run_docker.sh
+```
