@@ -1,5 +1,8 @@
 # Flask API Server
 
+Check the presentation document here
+https://github.com/armmarov/journey-to-production/blob/main/doc/Journey-To-Production.pdf
+
 ## To initially setup the environment
 ```
 > python3.8 -m venv venv
