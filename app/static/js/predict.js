@@ -16,7 +16,7 @@ async function convertImgToBase64(file) {
 
 async function predictImage() {
   $.ajax({
-    url: 'http://localhost:5000/yolo/predict',
+    url: '/yolo/predict',
     method: 'POST',
     dataType : "json",
     contentType: "application/json",
