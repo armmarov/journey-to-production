@@ -31,10 +31,12 @@ def create_app():
 
 def register_blueprints(app):
 
-  from app.routes.general_route import general_api
-  from app.routes.ml_route import ml_api
+  from app.routes.app_route import app_ui
+  from app.routes.rec_engine_route import rec_engine_api
+  from app.routes.yolo_route import yolo_api
 
-  app.register_blueprint(general_api, url_prefix='/')
-  app.register_blueprint(ml_api, url_prefix='/ml')
+  app.register_blueprint(app_ui, url_prefix='/')
+  app.register_blueprint(rec_engine_api, url_prefix='/rec')
+  app.register_blueprint(yolo_api, url_prefix='/yolo')
 
 app, db = create_app()

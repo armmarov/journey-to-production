@@ -42,3 +42,7 @@ Werkzeug==2.1.2
 zipp==3.8.0
 zope.event==4.5.0
 zope.interface==5.4.0
+torch 
+torchvision 
+torchaudio
+ultralytics
